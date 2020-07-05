@@ -9,21 +9,23 @@ import os
 import pathlib
 
 
-def main():
+def job():
     data_filename = 'data.csv'
     image_filename = 'image.jpg'
     absolute_path = str(pathlib.Path(__file__).parent.absolute())
     image_filename_absolute_path = absolute_path + '/' + image_filename
-    os.remove(data_filename)
+    if os.path.exists(data_filename):
+        os.remove(data_filename)
     process = CrawlerProcess()
     process.crawl(Scrapper)
     process.start()
     data_parsed = parse_data(data_filename)
     sample = data_parsed.sample()
-    imageDownloader = ImageDownloader(sample['url_image'].item(), image_filename)
+    imageDownloader = ImageDownloader(
+        sample['url_image'].item(), image_filename)
     if imageDownloader.successfull_download:
         set_gnome_wallpaper(image_filename_absolute_path)
-    else: 
+    else:
         print('Error downloading, cannot set gnome wallpaper')
 
 
@@ -45,6 +47,10 @@ def parse_data(filename):
     data['url_image'] = data['url_image'].apply(
         lambda url: base_url + url + '/download?force=true')
     return data
+
+
+def main():
+    job()
 
 
 if __name__ == '__main__':
