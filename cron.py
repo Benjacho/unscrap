@@ -6,3 +6,8 @@ job = cron.new(
 job.minute.every(1)
 
 cron.write()
+
+
+class Cron():
+
+    def __init__(self):

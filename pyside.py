@@ -60,6 +60,11 @@ class MyWidget(QtWidgets.QWidget):
         if len(self.textbox1.text()) > 0:
             self.word = self.textbox1.text()
         self.time_text = self.combobox1.currentText()
+        self._execute_cron()
+
+    def _execute_cron(self):
+        # executing cron
+        print('hello')
 
 
 def main():
