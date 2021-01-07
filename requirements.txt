@@ -24,7 +24,7 @@ jedi==0.17.1
 jupyter-client==6.1.5
 jupyter-core==4.6.3
 lazy-object-proxy==1.4.3
-lxml==4.5.1
+lxml==4.6.2
 macholib==1.14
 mccabe==0.6.1
 numpy==1.19.0
